@@ -1,8 +1,12 @@
-all: 1_basic
+all: 1_basic.bin
 
-1_basic:1_basic.c
-	gcc -o 1_basic.bin 1_basic.c
+1_basic.bin: 1_basic.o
+	gcc -o 1_basic.bin 1_basic.o
+
+1_basic.o:
 
 clean:
-	rm -rf *.bin
+	rm -rf *.bin *.o
+
+.PHONY: all clean
 
