@@ -4,72 +4,77 @@
 
 #define MAX(x,y) (x>y?x:y)
 
-void histogram(int i_A2Z, int i_Number, int i_Invisible, int i_Others);
-void horizontical(int i_A2Z, int i_Number, int i_Invisible, int i_Others);
-void vertical(int i_A2Z, int i_Number, int i_Invisible, int i_Others);
-
-/*************************************************************
-*iNum   : The number of plates
-*cStart : The name of the starting plate
-*cEnd   : The name of the ending plate
-*bFlag  : Possibility as start or end, establish boundary needed
-*************************************************************/
+void histogram(int iA2Z, int iNumber, int iInvisible, int iOthers);
+void horizontical(int iA2Z, int iNumber, int iInvisible, int iOthers);
+void vertical(int iA2Z, int iNumber, int iInvisible, int iOthers);
 
 int main()
 {
     int c_Input=0;
-    int i_A2Z=0;
-    int i_Number=0;
-    int i_Invisible=0;
-    int i_Others=0;
+    int iA2Z=0;
+    int iNumber=0;
+    int iInvisible=0;
+    int iOthers=0;
 
     while((c_Input=getchar())!=EOF)
     {
         if ((c_Input>='a' && c_Input<='z') || (c_Input>='A' && c_Input<='Z'))
         {
-            i_A2Z++;
+            iA2Z++;
         }
         else if ((c_Input>='0' && c_Input<='9'))
         {
-            i_Number++;
+            iNumber++;
         }
         else if(c_Input==' ' || c_Input=='\n' ||c_Input=='\t')
         {
-            i_Invisible++;
+            iInvisible++;
         }
         else
         {
-            i_Others++;
+            iOthers++;
         }
     }
 
-    histogram(i_A2Z, i_Number, i_Invisible, i_Others);
+    histogram(iA2Z, iNumber, iInvisible, iOthers);
 }
 
-void histogram(int i_A2Z, int i_Number, int i_Invisible, int i_Others)
+/*************************************************************
+*iA2Z       : Sum of a~z and A~Z
+*iNumber    : Sum of 0~9
+*iInvisible : Sum of space, table, new-line
+*iOthers    : Sum of other characters
+*************************************************************/
+void histogram(int iA2Z, int iNumber, int iInvisible, int iOthers)
 {
     printf("\n\n\n[Histogram]\n");
-    printf("I  %2d: a~z or A~Z\n",i_A2Z);
-    printf("II %2d: 0~9\n",i_Number);
-    printf("III%2d: Invisible characters\n",i_Invisible);
-    printf("IV %2d: Other letters\n",i_Others);
+    printf("I  %2d: a~z or A~Z\n",iA2Z);
+    printf("II %2d: 0~9\n",iNumber);
+    printf("III%2d: Invisible characters\n",iInvisible);
+    printf("IV %2d: Other letters\n",iOthers);
     printf("\n\n\n");
 
-    horizontical(i_A2Z, i_Number, i_Invisible, i_Others);
-    vertical(i_A2Z, i_Number, i_Invisible, i_Others);
+    horizontical(iA2Z, iNumber, iInvisible, iOthers);
+    vertical(iA2Z, iNumber, iInvisible, iOthers);
 }
 
-void horizontical(int i_A2Z, int i_Number, int i_Invisible, int i_Others)
+/*************************************************************
+*iA2Z       : Sum of a~z and A~Z
+*iNumber    : Sum of 0~9
+*iInvisible : Sum of space, table, new-line
+*iOthers    : Sum of other characters
+*************************************************************/
+void horizontical(int iA2Z, int iNumber, int iInvisible, int iOthers)
 {
-    int i_Loop=0;
-    int i_Max=MAX(MAX(MAX(i_A2Z,i_Number),i_Invisible),i_Others)+10;
+    int iLoop=0;
+    int iMax=MAX(MAX(MAX(iA2Z,iNumber),iInvisible),iOthers)+10;
 
 
     printf("Horizon\n");
 
     printf("|\n");
     printf("|");
-    for (i_Loop=i_A2Z;i_Loop>0;i_Loop--)
+    for (iLoop=iA2Z;iLoop>0;iLoop--)
     {
         putchar('-');
     }
@@ -77,7 +82,7 @@ void horizontical(int i_A2Z, int i_Number, int i_Invisible, int i_Others)
 
     printf("|\n");
     printf("|");
-    for (i_Loop=i_Number;i_Loop>0;i_Loop--)
+    for (iLoop=iNumber;iLoop>0;iLoop--)
     {
         putchar('-');
     }
@@ -85,7 +90,7 @@ void horizontical(int i_A2Z, int i_Number, int i_Invisible, int i_Others)
 
     printf("|\n");
     printf("|");
-    for (i_Loop=i_Invisible;i_Loop>0;i_Loop--)
+    for (iLoop=iInvisible;iLoop>0;iLoop--)
     {
         putchar('-');
     }
@@ -93,44 +98,50 @@ void horizontical(int i_A2Z, int i_Number, int i_Invisible, int i_Others)
 
     printf("|\n");
     printf("|");
-    for (i_Loop=i_Others;i_Loop>0;i_Loop--)
+    for (iLoop=iOthers;iLoop>0;iLoop--)
     {
         putchar('-');
     }
     printf("IV\n");
 
     printf("|\n");
-    for (i_Loop=i_Max;i_Loop>0;i_Loop--)
+    for (iLoop=iMax;iLoop>0;iLoop--)
     {
         putchar('-');
     }
     printf("\n\n\n");
 }
 
-void vertical(int i_A2Z, int i_Number, int i_Invisible, int i_Others)
+/*************************************************************
+*iA2Z       : Sum of a~z and A~Z
+*iNumber    : Sum of 0~9
+*iInvisible : Sum of space, table, new-line
+*iOthers    : Sum of other characters
+*************************************************************/
+void vertical(int iA2Z, int iNumber, int iInvisible, int iOthers)
 {
-    int i_Loop=0;
-    int i_Max=MAX(MAX(MAX(i_A2Z,i_Number),i_Invisible),i_Others);
-    int i_Number_offset=0;
-    int i_Invisible_offset=0;
+    int iLoop=0;
+    int iMax=MAX(MAX(MAX(iA2Z,iNumber),iInvisible),iOthers);
+    int iNumber_offset=0;
+    int iInvisible_offset=0;
     char a[5]={0};
 
     printf("Horizon\n");
-    for (i_Loop=1;i_Loop>0;i_Loop--)
+    for (iLoop=1;iLoop>0;iLoop--)
     {
         printf("|\n");
     }
 
-    for (i_Loop=i_Max+1; i_Loop>0; i_Loop--)
+    for (iLoop=iMax+1; iLoop>0; iLoop--)
     {
         printf("|");
 
         /* a~z and A~Z part*/
-        if (i_Loop>i_A2Z+1)
+        if (iLoop>iA2Z+1)
         {
             printf("    ");
         }
-        else if (i_Loop==i_A2Z+1)
+        else if (iLoop==iA2Z+1)
         {
             printf("   I");
         }
@@ -139,14 +150,14 @@ void vertical(int i_A2Z, int i_Number, int i_Invisible, int i_Others)
             printf("   |");
         }
 
-        if (i_Loop>i_Number+1)
+        if (iLoop>iNumber+1)
         {
             printf("    ");
         }
-        else if (i_Loop==i_Number+1)
+        else if (iLoop==iNumber+1)
         {
             printf("   II");
-            i_Number_offset=1;
+            iNumber_offset=1;
         }
         else
         {
@@ -154,20 +165,20 @@ void vertical(int i_A2Z, int i_Number, int i_Invisible, int i_Others)
         }
 
         strcpy(a,"   ");
-        if (i_Number_offset != 0)
+        if (iNumber_offset != 0)
         {
             a[2]='\0';
-            i_Number_offset=0;
+            iNumber_offset=0;
         }
 
-        if (i_Loop>i_Invisible+1)
+        if (iLoop>iInvisible+1)
         {
             printf("%s ",a);
         }
-        else if (i_Loop==i_Invisible+1)
+        else if (iLoop==iInvisible+1)
         {
             printf("%sIII",a);
-            i_Number_offset=2;
+            iNumber_offset=2;
         }
         else
         {
@@ -175,17 +186,17 @@ void vertical(int i_A2Z, int i_Number, int i_Invisible, int i_Others)
         }
 
         strcpy(a,"   ");
-        if (i_Number_offset != 0)
+        if (iNumber_offset != 0)
         {
             a[1]='\0';
-            i_Number_offset=0;
+            iNumber_offset=0;
         }
 
-        if (i_Loop>i_Others+1)
+        if (iLoop>iOthers+1)
         {
             printf("%s \n",a);
         }
-        else if (i_Loop==i_Others+1)
+        else if (iLoop==iOthers+1)
         {
             printf("%sIV\n",a);
         }
