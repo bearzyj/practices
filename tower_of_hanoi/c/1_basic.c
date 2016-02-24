@@ -2,6 +2,11 @@
 
 #define ABC 198        /* 198='A'+'B'+'C' */
 
+/*************************************************************
+*iNum   : The number of plates
+*cStart : The name of the starting plate
+*cEnd   : The name of the ending plate
+*************************************************************/
 void core(int iNum, char cStart, char cEnd)
 {
     if (iNum >= 1)

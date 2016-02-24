@@ -8,4 +8,5 @@ All the programs listed here have some similar features:
 
 |Description                       |C  |C++|Java|Bash|Python|PHP|JavaScript|
 |----------------------------------|:-:|:-:|:--:|:--:|:----:|:-:|:--------:|
+|[Sum of Char](./sum_of_char)      |Yes|   |    |    |      |   |          |
 |[Tower of Hanoi](./tower_of_hanoi)|Yes|   |    |    |Yes   |   |          |
