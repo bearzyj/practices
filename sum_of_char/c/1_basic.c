@@ -1,5 +1,11 @@
 #include <stdio.h>
 
+typedef int BOOL;
+#define TRUE 1
+#define FALSE 0
+
+#define MAX(x,y) (x>y?x:y)
+
 void histogram(int i_A2Z, int i_Number, int i_Invisible, int i_Others);
 void horizontical(int i_A2Z, int i_Number, int i_Invisible, int i_Others);
 void vertical(int i_A2Z, int i_Number, int i_Invisible, int i_Others);
@@ -52,11 +58,13 @@ void histogram(int i_A2Z, int i_Number, int i_Invisible, int i_Others)
     printf("\n\n\n");
 
     horizontical(i_A2Z, i_Number, i_Invisible, i_Others);
+    vertical(i_A2Z, i_Number, i_Invisible, i_Others);
 }
 
 void horizontical(int i_A2Z, int i_Number, int i_Invisible, int i_Others)
 {
-    int i_Loop;
+    int i_Loop=0;
+    int i_Max=MAX(MAX(MAX(i_A2Z,i_Number),i_Invisible),i_Others)+10;
 
 
     printf("Horizon\n");
@@ -94,10 +102,62 @@ void horizontical(int i_A2Z, int i_Number, int i_Invisible, int i_Others)
     printf("IV\n");
 
     printf("|\n");
-    printf("-----------------------------------------\n");
+    for (i_Loop=i_Max;i_Loop>0;i_Loop--)
+    {
+        putchar('-');
+    }
+    printf("\n\n\n");
 }
 
 void vertical(int i_A2Z, int i_Number, int i_Invisible, int i_Others)
 {
+    int i_Loop=0;
+    int i_Max=MAX(MAX(MAX(i_A2Z,i_Number),i_Invisible),i_Others);
+    int i_Number_offset=0;
+    int i_Invisible_offset=0;
+    char a[5]=0;
 
+    printf("Horizon\n");
+    for (i_Loop=5;i_Loop>0;i_Loop--)
+    {
+        printf('|\n');
+    }
+
+    for (i_Loop=i_Max; i_Loop>0; i_Loop--)
+    {
+        if (i_Loop>i_A2Z+1)
+        {
+            printf("   ");
+        }
+        else if (i_Loop==i_A2Z+1)
+        {
+            printf("  I");
+        }
+        else
+        {
+            printf("  |");
+        }
+
+        if (i_Loop>i_Number+1)
+        {
+            printf("   ");
+        }
+        else if (i_Loop==i_Number+1)
+        {
+            printf("  II");
+            i_Number_offset=1;
+        }
+        else
+        {
+            printf("  |");
+        }
+
+        strcpy(a,"   ");
+        if (i_Number_offset != 0)
+        {
+            a[2]='\0';
+            i_Number_offset=0;
+        }
+
+    }
 }
